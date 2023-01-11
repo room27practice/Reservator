@@ -18,9 +18,9 @@ namespace Reservator.Models
         public virtual ICollection<Reservation> Reservations { get; set; }
                                                 = new HashSet<Reservation>();
     
-    
-    
-    
     }
+
+
+
 
 }

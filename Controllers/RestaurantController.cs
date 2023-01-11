@@ -27,10 +27,10 @@ namespace Reservator.Controllers
 
         public IActionResult Details(int id)
         {
-            Restaurant allRestaurants = db.Restaurants.Where(x=>x.IsDeleted==false)
+            Restaurant restaurantFd = db.Restaurants.Where(x=>x.IsDeleted==false)
                 .Include(r => r.Places).FirstOrDefault(r => r.Id == id);
 
-            return View(allRestaurants);
+            return View(restaurantFd);
         }
 
     }

@@ -25,10 +25,10 @@ namespace Reservator.Services
 
         public async Task InsertDataInDBAsync()
         {
-            //await this.CreateRolesAsync();
-            //await this.RegisterUsersAsync();
-            //await this.CreateRestaurantsAsync();
-            //await this.CreatePlacesAsync();
+            await this.CreateRolesAsync();
+            await this.RegisterUsersAsync();
+            await this.CreateRestaurantsAsync();
+            await this.CreatePlacesAsync();
             await this.CreateReservationAsync();
         }
 

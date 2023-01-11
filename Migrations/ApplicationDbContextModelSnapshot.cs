@@ -335,6 +335,27 @@ namespace Reservator.Migrations
                     b.ToTable("Restaurants");
                 });
 
+            modelBuilder.Entity("Reservator.Models.RestaurantUserGrade", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AppUserId", "RestaurantId");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("RestaurantUserGrades");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -414,9 +435,30 @@ namespace Reservator.Migrations
                     b.Navigation("Place");
                 });
 
+            modelBuilder.Entity("Reservator.Models.RestaurantUserGrade", b =>
+                {
+                    b.HasOne("Reservator.Models.AppUser", "User")
+                        .WithMany("UserRestaurantGrades")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Reservator.Models.Restaurant", "Restaurant")
+                        .WithMany("RestaurantUserGrades")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Reservator.Models.AppUser", b =>
                 {
                     b.Navigation("Reservations");
+
+                    b.Navigation("UserRestaurantGrades");
                 });
 
             modelBuilder.Entity("Reservator.Models.Place", b =>
@@ -427,6 +469,8 @@ namespace Reservator.Migrations
             modelBuilder.Entity("Reservator.Models.Restaurant", b =>
                 {
                     b.Navigation("Places");
+
+                    b.Navigation("RestaurantUserGrades");
                 });
 #pragma warning restore 612, 618
         }
