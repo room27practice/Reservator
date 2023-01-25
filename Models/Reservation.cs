@@ -27,7 +27,8 @@ namespace Reservator.Models
         [ForeignKey(nameof(AppUser))]
         public string UserId { get; set; }
 
-        public virtual AppUser Client { get; set; }
+
+        public virtual AppUser AppUser { get; set; }
         public DateTime Time { get; set; }
     }
 }

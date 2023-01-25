@@ -1,4 +1,5 @@
-﻿@model List<Restaurant>
+﻿
+@model List<Restaurant>
 
 
 
@@ -8,6 +9,18 @@
 @{
 }
 <div class="restorant-index">
+
+    <div>
+        @{
+            var date=DateTime.UtcNow;
+             date= date.AddDays(-10);
+            <p>@GlobalConstants.FormatDate(date)</p>
+
+
+        }
+
+    </div>
+
 
     @if (Model.Any())
     {
